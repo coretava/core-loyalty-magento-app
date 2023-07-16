@@ -7,7 +7,7 @@ use Magento\Store\Model\ScopeInterface;
 class Data extends AbstractHelper
 {
     const XML_PATH_CORETAVA = 'loyalty/general/';
-    
+
     const APP_ID_FIELD = self::XML_PATH_CORETAVA . "coretava_app_id";
     const APP_KEY_FIELD = self::XML_PATH_CORETAVA . "coretava_app_key";
 
@@ -24,5 +24,9 @@ class Data extends AbstractHelper
 
     public function getAppKey() {
         return $this->getConfigValue(self::APP_KEY_FIELD);
+    }
+
+    public function getApiDomain() {
+        return "https://api.dev.coretava.com";
     }
 }
