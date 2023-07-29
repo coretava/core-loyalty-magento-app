@@ -1,0 +1,7 @@
+<integrations>
+    <integration name="CoretavaIntegration">
+        <email>support@coretava.com</email>
+        <endpoint_url>https://dashboard.dev.coretava.com/magento/authroize</endpoint_url>
+        <identity_link_url>https://dashboard.dev.coretava.com/magento/authroize</identity_link_url>
+    </integration>
+</integrations>

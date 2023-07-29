@@ -1,0 +1,20 @@
+{
+  "name": "coretava/core-loyalty",
+  "description": "Coretava: Core Loyalty",
+  "type": "magento2-module",
+  "version": "1.0",
+  "authors": [
+    {
+      "name": "Riyad Yahya",
+      "email": "riyad@coretava.com",
+      "homepage": "https://coretava.com",
+      "role": "CTO"
+    }
+  ],
+  "autoload": {
+    "files": [ "registration.php" ],
+    "psr-4": {
+      "Coretava\\Loyalty\\": ""
+    }
+  }
+}

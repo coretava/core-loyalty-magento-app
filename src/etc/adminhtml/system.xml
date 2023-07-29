@@ -2,12 +2,12 @@
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
     <system>
-        <tab id="coretava" translate="label" sortOrder="5">
+        <tab id="coretava" translate="label" sortOrder="500">
             <label>Coretava</label>
         </tab>
-        <section id="loyalty" translate="label" sortOrder="5" showInDefault="1" showInWebsite="1" showInStore="1">
+        <section id="loyalty" translate="label" sortOrder="130" showInDefault="1" showInWebsite="1" showInStore="1">
             <class>separator-top</class>
-            <label>Loyalty Station</label>
+            <label>Core Loyalty</label>
             <tab>coretava</tab>
             <resource>Coretava_Loyalty::loyalty_config</resource>
             <group id="general" translate="label" type="text" sortOrder="0" showInDefault="1" showInWebsite="1"

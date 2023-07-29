@@ -1,41 +1,41 @@
 <?php
+
 namespace Coretava\Loyalty\Block;
-use \Coretava\Loyalty\Helper\Data;
 
-class Script extends \Magento\Framework\View\Element\Template
+use Coretava\Loyalty\Helper\Data;
+use Magento\Customer\Model\Session;
+use Magento\Framework\View\Element\Template;
+use Magento\Framework\View\Element\Template\Context;
+
+class Script extends Template
 {
-    protected $helper;
+    protected Data $helper;
 
-	public function __construct(
-        \Magento\Framework\View\Element\Template\Context $context, 
-        \Magento\Customer\Model\Session $customerSession,
-        Data $helper
-    )
-	{
+    public function __construct(Context $context, Session $customerSession, Data $helper)
+    {
         $this->customerSession = $customerSession;
         $this->customerSession->start();
         $this->helper = $helper;
-		parent::__construct($context);
-	}
 
-    public function getAppId() 
-    {
-        return $this->helper->getAppId();
+        parent::__construct($context);
     }
 
-    public function getUser()
+    public function getUser(): array
     {
         $customerId = $this->customerSession->getCustomerId();
         $customerData = $this->customerSession->getCustomer();
-        
-        $user = array(
+
+        return array(
             "externalId" => $customerId,
             "email" => $customerData->getEmail(),
             "firstName" => $customerData->getFirstname(),
             "lastName" => $customerData->getLastname(),
             "hash" => hash_hmac('sha256', $this->getAppId() . '|' . $customerData->getEmail(), $this->helper->getAppKey())
         );
+    }
 
-        return $user;
+    public function getAppId()
+    {
+        return $this->helper->getAppId();
     }
 }
