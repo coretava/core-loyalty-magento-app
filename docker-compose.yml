@@ -25,8 +25,7 @@ services:
       - ALLOW_EMPTY_PASSWORD=yes
     volumes:
       - 'magento_data:/bitnami/magento'
-      - './src:/bitnami/magento/app/code/Coretava/Loyalty'
-#      - './src:/coretava-loyalty'
+      - './src:/coretava-loyalty'
     depends_on:
       - mariadb
       - elasticsearch
