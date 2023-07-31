@@ -1,0 +1,23 @@
+<?php /** @var \Coretava\Loyalty\Block\Script $block */ ?>
+<?php if ($block->helper->getAppId()) { ?>
+    <script src="<?php echo $block->helper->getStaticDomain() . '/sdk/loyalty-station/main.js' ?>"></script>
+    <script>
+        window.gamiphyAsyncInit = function () {
+            window.LoyaltyStation.init({
+                app: "<?php echo $block->helper->getAppId() ?>",
+                goToAuth: (isSignUp) => {
+                    if (isSignUp) {
+                        window.location.href = '/customer/account/create'
+                    } else {
+                        window.location.href = '/customer/account/login'
+                    }
+                },
+                <?php
+                if ($this->customerSession->isLoggedIn()) {
+                    echo "user: " . json_encode($block->getUser());
+                }
+                ?>
+            });
+        };
+    </script>
+<?php } ?>

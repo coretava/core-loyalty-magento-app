@@ -9,7 +9,7 @@ use Magento\Framework\View\Element\Template\Context;
 
 class Script extends Template
 {
-    protected Data $helper;
+    public Data $helper;
 
     public function __construct(Context $context, Session $customerSession, Data $helper)
     {
@@ -30,12 +30,7 @@ class Script extends Template
             "email" => $customerData->getEmail(),
             "firstName" => $customerData->getFirstname(),
             "lastName" => $customerData->getLastname(),
-            "hash" => hash_hmac('sha256', $this->getAppId() . '|' . $customerData->getEmail(), $this->helper->getAppKey())
+            "hash" => hash_hmac('sha256', $this->helper->getAppId() . '|' . $customerData->getEmail(), $this->helper->getAppKey())
         );
-    }
-
-    public function getAppId()
-    {
-        return $this->helper->getAppId();
     }
 }

@@ -40,7 +40,7 @@ class Api extends AbstractHelper
     {
         $ch = curl_init();
 
-        curl_setopt($ch, CURLOPT_URL, $this->getBaseDomain() . $path);
+        curl_setopt($ch, CURLOPT_URL, $this->helper->getApiDomain() . $path);
         curl_setopt($ch, CURLOPT_POST, 1);
         curl_setopt($ch, CURLOPT_POSTFIELDS, $body);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
@@ -65,10 +65,5 @@ class Api extends AbstractHelper
         curl_setopt($ch, CURLOPT_HTTPHEADER, $headersForCurl);
         curl_exec($ch);
         curl_close($ch);
-    }
-
-    public function getBaseDomain(): string
-    {
-        return "https://coretava.requestcatcher.com";
     }
 }
