@@ -20,7 +20,6 @@ class OrderSaved implements ObserverInterface
         $order = $observer->getEvent()->getOrder();
 
         if ($order->getState() == 'complete') {
-
             $body = json_encode(array(
                 'orderId' => $order->getIncrementId(),
                 'status' => $order->getState()

@@ -7,8 +7,9 @@ docker-compose up -d
 2. Install Coretava app
 
 ```shell
-composer config repositories.coretava '{"type": "path", "url": "/coretava-loyalty", "options": {"symlink": false}}'
-composer require coretava/core-loyalty
+#composer config repositories.coretava '{"type": "path", "url": "/coretava-loyalty", "options": {"symlink": false}}'
+composer config repositories.coretava vcs https://github.com/coretava/loyalty-station-magento
+composer require coretava/core-loyalty:dev-main
 ```
 
 3. Compile magento and cache clean up
