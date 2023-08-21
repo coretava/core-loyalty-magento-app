@@ -7,7 +7,7 @@ use Magento\Store\Model\ScopeInterface;
 
 class Data extends AbstractHelper
 {
-    const ENVIRONMENT = 'dev';
+    const ENVIRONMENT = 'staging';
     const XML_PATH_CORETAVA = 'loyalty/general/';
     const APP_ID_FIELD = self::XML_PATH_CORETAVA . "coretava_app_id";
     const APP_KEY_FIELD = self::XML_PATH_CORETAVA . "coretava_app_key";
