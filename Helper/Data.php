@@ -42,7 +42,7 @@ class Data extends AbstractHelper
     {
         return match (self::ENVIRONMENT) {
             'dev' => 'https://static-dev.gamiphy.co',
-            'staging' => 'https://static-static.gamiphy.co',
+            'staging' => 'https://static-staging.gamiphy.co',
             default => 'https://static.gamiphy.co',
         };
     }
