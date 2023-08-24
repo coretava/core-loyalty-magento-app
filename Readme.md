@@ -1,18 +1,20 @@
-1. Run docker compose file. Wait for Magento to be up & running.
+
+# Coretava - Core Loyalty
+
+Reward customers with points to encourage them to come back and make repeat purchases at higher values.
+
+![Coretava](https://coretava.com/_next/image?url=https%3A%2F%2Fstatic.coretava.com%2Fcms%2Fthumbnail_Layer_2_13eb55038f_b00cee250d.png&w=256&q=100)
+
+## How to install
+To install the extension, you need to use Composer. To learn more about Composer, click here: https://getcomposer.org.
+
+### Add extension to your project
 
 ```shell
-docker-compose up -d
+composer require coretava/core-loyalty
 ```
 
-2. Install Coretava app
-
-```shell
-#composer config repositories.coretava '{"type": "path", "url": "/coretava-loyalty", "options": {"symlink": false}}'
-composer config repositories.coretava vcs https://github.com/coretava/loyalty-station-magento
-composer require coretava/core-loyalty:dev-main
-```
-
-3. Compile magento and cache clean up
+### Compile Magento and clean cache
 
 ```shell
 bin/magento setup:upgrade
@@ -20,12 +22,6 @@ bin/magento setup:di:compile
 bin/magento cache:clean
 ```
 
-4. Enable developer mode to show errors
+## Support
 
-```shell
-bin/magento deploy:mode:set developer
-```
-
-5. Now you can access magento store using the following URLs
-    * Storefront: http://localhost
-    * Admin: http://localhost/admin
+For support, email support@coretava.com.
