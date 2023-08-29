@@ -1,10 +1,12 @@
 pipeline {
     agent {
         kubernetes {
-            containerTemplate {
-                name 'composer'
-                image 'composer'
-            }
+            yaml '''
+            spec:
+                containers:
+                - name: composer
+                  image: composer
+            '''
         }
     }
     stages {
