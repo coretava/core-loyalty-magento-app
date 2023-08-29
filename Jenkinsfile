@@ -6,6 +6,10 @@ pipeline {
                 containers:
                 - name: composer
                   image: composer
+                  command:
+                    - sleep
+                  args:
+                    - 99d
             '''
         }
     }
