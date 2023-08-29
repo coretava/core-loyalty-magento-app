@@ -1,7 +1,8 @@
 pipeline {
-    agent {
-        node {
-            label 'slave'
+    kubernetes {
+        containerTemplate {
+            name 'composer'
+            image 'composer'
         }
     }
     stages {
