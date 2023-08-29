@@ -15,7 +15,7 @@ class ProductDeleted implements ObserverInterface
         $this->api = $api;
     }
 
-    public function execute(Observer $observer): static
+    public function execute(Observer $observer): ProductDeleted
     {
         $product = $observer->getEvent()->getProduct();
 

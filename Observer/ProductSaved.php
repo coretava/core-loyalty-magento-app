@@ -15,7 +15,7 @@ class ProductSaved implements ObserverInterface
         $this->api = $api;
     }
 
-    public function execute(Observer $observer): static
+    public function execute(Observer $observer): ProductSaved
     {
         $product = $observer->getEvent()->getProduct();
 
