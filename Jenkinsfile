@@ -1,8 +1,10 @@
 pipeline {
-    kubernetes {
-        containerTemplate {
-            name 'composer'
-            image 'composer'
+    agent {
+        kubernetes {
+            containerTemplate {
+                name 'composer'
+                image 'composer'
+            }
         }
     }
     stages {
