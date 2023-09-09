@@ -58,6 +58,8 @@ pipeline {
             steps {
                 container('php') {
                     sh "composer config version ${NEW_COMPOSER_VERSION}"
+                    sh "git tag ${NEW_COMPOSER_VERSION}"
+                    sh "git push origin --tags"
                 }
             }
         }
