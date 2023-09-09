@@ -13,10 +13,15 @@ pipeline {
             '''
         }
     }
+    environment {
+        SLACK_CHANNEL = "#core-loyalty-magento-deployments"
+    }
     stages {
         stage('Prepare') {
             steps {
                 container('php') {
+                    slackSend message: "Start building Core Loyalty Magento extension", color: '#FFFF00', channel: "${SLACK_CHANNEL}"
+
                     sh 'apt-get -y update'
                     sh 'apt-get install -y git libicu-dev zlib1g-dev libpng-dev libxslt-dev libzip-dev'
                     sh 'docker-php-ext-configure intl'
@@ -53,9 +58,19 @@ pipeline {
             steps {
                 container('php') {
                     sh "composer config version ${NEW_COMPOSER_VERSION}"
-                    sh "composer config version"
                 }
             }
+        }
+    }
+    post {
+        failure {
+            slackSend message: "Failed building Core Loyalty Magento extension", color: '#FF0000', channel: "${SLACK_CHANNEL}"
+        }
+        success {
+            slackSend message: "Finshed building Core Loyalty Magento extension successfully (${NEW_COMPOSER_VERSION})", color: '#00FF00', channel: "${SLACK_CHANNEL}"
+        }
+        aborted {
+            slackSend message: "Building Core Loyalty Magento extension aborted", color: '#909090', channel: "${SLACK_CHANNEL}"
         }
     }
 }
