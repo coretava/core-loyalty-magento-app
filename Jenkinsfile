@@ -4,8 +4,8 @@ pipeline {
             yaml '''
             spec:
                 containers:
-                - name: composer
-                  image: composer
+                - name: php
+                  image: php:8
                   command:
                     - sleep
                   args:
@@ -16,7 +16,7 @@ pipeline {
     stages {
         stage('Prepare') {
             steps {
-                container('composer') {
+                container('php') {
                     sh 'apt-get install -y git libicu-dev zlib1g-dev libpng-dev libxslt-dev libzip-dev'
                     sh 'docker-php-ext-configure intl'
                     sh 'docker-php-ext-install intl bcmath gd xsl zip'
@@ -27,14 +27,14 @@ pipeline {
         }
         stage('Install') {
             steps {
-                container('composer') {
+                container('php') {
                     sh 'composer install'
                 }
             }
         }
         stage('Evalute Version') {
             steps {
-                container('composer') {
+                container('php') {
                     script {
                         env.CURRENT_COMPOSER_VERSION = sh(
                                 script: 'composer config version',
