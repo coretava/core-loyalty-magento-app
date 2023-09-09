@@ -17,6 +17,7 @@ pipeline {
         stage('Prepare') {
             steps {
                 container('php') {
+                    sh 'apt-get -y update'
                     sh 'apt-get install -y git libicu-dev zlib1g-dev libpng-dev libxslt-dev libzip-dev'
                     sh 'docker-php-ext-configure intl'
                     sh 'docker-php-ext-install intl bcmath gd xsl zip'
