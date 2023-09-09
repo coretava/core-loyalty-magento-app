@@ -58,7 +58,7 @@ pipeline {
             steps {
                 container('php') {
                     sh "composer config version ${NEW_COMPOSER_VERSION}"
-                    sh "git config --global --add safe.directory /home/jenkins/agent/workspace/*"
+                    sh "git config --global --add safe.directory '*'"
                     sh "git tag ${NEW_COMPOSER_VERSION}"
                     sh "git push origin --tags"
                 }
