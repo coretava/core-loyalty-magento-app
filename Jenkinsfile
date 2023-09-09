@@ -51,8 +51,9 @@ pipeline {
         }
         stage('Set Composer Version') {
             steps {
-                container('composer') {
+                container('php') {
                     sh "composer config version ${NEW_COMPOSER_VERSION}"
+                    sh "composer config version"
                 }
             }
         }
