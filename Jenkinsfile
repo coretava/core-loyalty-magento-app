@@ -65,7 +65,7 @@ pipeline {
                     sh "git config --global user.email \"jenkins@coretava.com\""
                     sh "git config --global user.name \"Jenkins CICD\""
                     sh "git commit -m \"New tag (${NEW_COMPOSER_VERSION})\""
-                    sh "git push origin --tags"
+                    sh "git push --follow-tags"
                 }
             }
         }
