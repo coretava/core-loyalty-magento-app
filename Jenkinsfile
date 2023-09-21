@@ -41,29 +41,28 @@ pipeline {
         stage('Evalute Version') {
             steps {
                 container('php') {
-//                    script {
-//                        env.CURRENT_COMPOSER_VERSION = sh(
-//                                script: 'composer config version',
-//                                returnStdout: true
-//                        ).trim()
-//                        env.NEW_COMPOSER_VERSION = sh(
-//                                script: 'echo ${CURRENT_COMPOSER_VERSION} | awk -F. -v OFS=. \'{$NF += 1 ; print}\'',
-//                                returnStdout: true
-//                        ).trim()
-//                    }
+                    script {
+                        env.CURRENT_COMPOSER_VERSION = sh(
+                                script: 'composer config version',
+                                returnStdout: true
+                        ).trim()
+                        env.NEW_COMPOSER_VERSION = sh(
+                                script: 'echo ${CURRENT_COMPOSER_VERSION} | awk -F. -v OFS=. \'{$NF += 1 ; print}\'',
+                                returnStdout: true
+                        ).trim()
+                    }
                 }
             }
         }
         stage('Set Composer Version') {
             steps {
-//                container('php') {
-//                    sh "composer config version ${NEW_COMPOSER_VERSION}"
-                    sh "git tag 1.0.0-testing"
-                    sh "git config --get remote.origin.url"
-                    withCredentials([gitUsernamePassword(credentialsId: "github-app-coretava-jenkins")]) {
-                        sh "git push origin --tags"
-                    }
-//                }
+                container('php') {
+                    sh "composer config version ${NEW_COMPOSER_VERSION}"
+                }
+                sh "git tag ${NEW_COMPOSER_VERSION}"
+                withCredentials([gitUsernamePassword(credentialsId: "github-app-coretava-jenkins")]) {
+                    sh "git push origin --tags"
+                }
             }
         }
     }
