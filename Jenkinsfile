@@ -17,11 +17,20 @@ pipeline {
         SLACK_CHANNEL = "#core-loyalty-magento-deployments"
     }
     stages {
+        stage('Run CI?') {
+            steps {
+                slackSend message: "[<${BUILD_URL}|Build-${BUILD_NUMBER}>] Start building Core Loyalty Magento extension", color: '#FFFF00', channel: "${SLACK_CHANNEL}"
+                script {
+                    if (sh(script: "git log -1 --pretty=%B | fgrep -ie '[skip ci]' -e '[ci skip]'", returnStatus: true) == 0) {
+                        currentBuild.result = 'NOT_BUILT'
+                        error 'Aborting because commit message contains [skip ci]'
+                    }
+                }
+            }
+        }
         stage('Prepare') {
             steps {
                 container('php') {
-                    slackSend message: "Start building Core Loyalty Magento extension", color: '#FFFF00', channel: "${SLACK_CHANNEL}"
-
                     sh 'apt-get -y update'
                     sh 'apt-get install -y git libicu-dev zlib1g-dev libpng-dev libxslt-dev libzip-dev'
                     sh 'docker-php-ext-configure intl'
@@ -63,9 +72,9 @@ pipeline {
                     sh "git add ."
                     sh "git config --global user.email \"jenkins@coretava.com\""
                     sh "git config --global user.name \"Jenkins CICD\""
-                    sh "git commit -m \"New tag (${NEW_COMPOSER_VERSION})\""
+                    sh "git commit -m \"[skip ci] tag (${NEW_COMPOSER_VERSION})\""
                     sh "git tag ${NEW_COMPOSER_VERSION}"
-                    sh "git push origin HEAD:dev --follow-tags"
+                    sh "git push origin HEAD:${BRANCH_NAME}"
                     sh "git push --tags"
                 }
             }
@@ -73,13 +82,13 @@ pipeline {
     }
     post {
         failure {
-            slackSend message: "Failed building Core Loyalty Magento extension", color: '#FF0000', channel: "${SLACK_CHANNEL}"
+            slackSend message: "[<${BUILD_URL}|Build-${BUILD_NUMBER}>] Failed building Core Loyalty Magento extension", color: '#FF0000', channel: "${SLACK_CHANNEL}"
         }
         success {
-            slackSend message: "Finshed building Core Loyalty Magento extension successfully (${NEW_COMPOSER_VERSION})", color: '#00FF00', channel: "${SLACK_CHANNEL}"
+            slackSend message: "[<${BUILD_URL}|Build-${BUILD_NUMBER}>] Finshed building Core Loyalty Magento extension successfully (${NEW_COMPOSER_VERSION})", color: '#00FF00', channel: "${SLACK_CHANNEL}"
         }
         aborted {
-            slackSend message: "Building Core Loyalty Magento extension aborted", color: '#909090', channel: "${SLACK_CHANNEL}"
+            slackSend message: "[<${BUILD_URL}|Build-${BUILD_NUMBER}>] Building Core Loyalty Magento extension aborted", color: '#909090', channel: "${SLACK_CHANNEL}"
         }
     }
 }
