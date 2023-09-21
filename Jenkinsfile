@@ -58,10 +58,8 @@ pipeline {
             steps {
 //                container('php') {
 //                    sh "composer config version ${NEW_COMPOSER_VERSION}"
-                    sh "git config --global --add safe.directory '*'"
-                    sh 'git config --global user.name "Jenkins CI CD"'
                     sh "git tag 1.0.0-testing"
-                    sh "git push origin --tags"
+                    sh "git push --set-upstream origin --tags"
 //                }
             }
         }
