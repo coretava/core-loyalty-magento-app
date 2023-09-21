@@ -62,7 +62,7 @@ pipeline {
                 sh "git tag ${NEW_COMPOSER_VERSION}"
                 withCredentials([gitUsernamePassword(credentialsId: "github-app-coretava-jenkins")]) {
                     sh "git add ."
-                    sh 'git commit "New tag (${NEW_COMPOSER_VERSION})"'
+                    sh 'git commit -m "New tag (${NEW_COMPOSER_VERSION})"'
                     sh "git push origin --tags"
                 }
             }
