@@ -60,7 +60,9 @@ pipeline {
 //                    sh "composer config version ${NEW_COMPOSER_VERSION}"
                     sh "git tag 1.0.0-testing"
                     sh "git config --get remote.origin.url"
-                    sh "git push --set-upstream origin --tags"
+                    withCredentials([usernamePassword(credentialsId: "github-app-coretava-jenkins", passwordVariable: 'PASSWORD', usernameVariable: 'USERNAME')]) {
+                        sh "GIT_ASKPASS=${PASSWORD} git push --set-upstream origin --tags"
+                    }
 //                }
             }
         }
