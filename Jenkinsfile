@@ -19,10 +19,9 @@ pipeline {
     stages {
         stage('Run CI?') {
             steps {
-                slackSend message: "[<${BUILD_URL}|Build-${BUILD_NUMBER}>] Start building Core Loyalty Magento extension", color: '#FFFF00', channel: "${SLACK_CHANNEL}"
                 script {
                     if (sh(script: "git log -1 --pretty=%B | fgrep -ie '[skip ci]' -e '[ci skip]'", returnStatus: true) == 0) {
-                        currentBuild.result = 'NOT_BUILT'
+                        currentBuild.result = 'ABORTED'
                         error 'Aborting because commit message contains [skip ci]'
                     }
                 }
@@ -31,6 +30,7 @@ pipeline {
         stage('Prepare') {
             steps {
                 container('php') {
+                    slackSend message: "[<${BUILD_URL}|Build-${BUILD_NUMBER}>] Start building Core Loyalty Magento extension", color: '#FFFF00', channel: "${SLACK_CHANNEL}"
                     sh 'apt-get -y update'
                     sh 'apt-get install -y git libicu-dev zlib1g-dev libpng-dev libxslt-dev libzip-dev'
                     sh 'docker-php-ext-configure intl'

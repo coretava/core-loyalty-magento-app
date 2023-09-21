@@ -31,6 +31,9 @@ bin/magento setup:di:compile
 bin/magento cache:clean
 ```
 
+## Contribution
+New tag will be created on code merge, package will be published to [Packagist](https://packagist.org/packages/coretava/core-loyalty)
+
 ## Support
 
 For support, email support@coretava.com.
