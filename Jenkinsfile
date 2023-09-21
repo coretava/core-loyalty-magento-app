@@ -56,13 +56,13 @@ pipeline {
         }
         stage('Set Composer Version') {
             steps {
-                container('php') {
+//                container('php') {
 //                    sh "composer config version ${NEW_COMPOSER_VERSION}"
                     sh "git config --global --add safe.directory '*'"
                     sh 'git config --global user.name "Jenkins CI CD"'
                     sh "git tag ${NEW_COMPOSER_VERSION}"
                     sh "git push origin --tags"
-                }
+//                }
             }
         }
     }
