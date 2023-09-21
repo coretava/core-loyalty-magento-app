@@ -42,14 +42,14 @@ pipeline {
             steps {
                 container('php') {
                     script {
-                        env.CURRENT_COMPOSER_VERSION = sh(
-                                script: 'composer config version',
-                                returnStdout: true
-                        ).trim()
-                        env.NEW_COMPOSER_VERSION = sh(
-                                script: 'echo ${CURRENT_COMPOSER_VERSION} | awk -F. -v OFS=. \'{$NF += 1 ; print}\'',
-                                returnStdout: true
-                        ).trim()
+//                        env.CURRENT_COMPOSER_VERSION = sh(
+//                                script: 'composer config version',
+//                                returnStdout: true
+//                        ).trim()
+//                        env.NEW_COMPOSER_VERSION = sh(
+//                                script: 'echo ${CURRENT_COMPOSER_VERSION} | awk -F. -v OFS=. \'{$NF += 1 ; print}\'',
+//                                returnStdout: true
+//                        ).trim()
                     }
                 }
             }
@@ -57,7 +57,7 @@ pipeline {
         stage('Set Composer Version') {
             steps {
                 container('php') {
-                    sh "composer config version ${NEW_COMPOSER_VERSION}"
+//                    sh "composer config version ${NEW_COMPOSER_VERSION}"
                     sh "git config --global --add safe.directory '*'"
                     sh 'git config --global user.name "Jenkins CI CD"'
                     sh "git tag ${NEW_COMPOSER_VERSION}"
