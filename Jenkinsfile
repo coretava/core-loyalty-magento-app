@@ -41,7 +41,7 @@ pipeline {
         stage('Evalute Version') {
             steps {
                 container('php') {
-                    script {
+//                    script {
 //                        env.CURRENT_COMPOSER_VERSION = sh(
 //                                script: 'composer config version',
 //                                returnStdout: true
@@ -50,7 +50,7 @@ pipeline {
 //                                script: 'echo ${CURRENT_COMPOSER_VERSION} | awk -F. -v OFS=. \'{$NF += 1 ; print}\'',
 //                                returnStdout: true
 //                        ).trim()
-                    }
+//                    }
                 }
             }
         }
