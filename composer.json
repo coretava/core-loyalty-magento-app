@@ -2,7 +2,7 @@
   "name": "coretava/core-loyalty",
   "description": "Coretava: Core Loyalty",
   "type": "magento2-module",
-  "version": "1.0",
+  "version": "0.0.11",
   "authors": [
     {
       "name": "Riyad Yahya",
@@ -15,6 +15,25 @@
     "files": [ "registration.php" ],
     "psr-4": {
       "Coretava\\Loyalty\\": ""
+    }
+  },
+  "repositories": [
+    {
+      "type": "composer",
+      "url": "https://repo.magento.com/"
+    }
+  ],
+  "license": "MIT",
+  "require": {
+    "magento/framework": "^103.0",
+    "magento/module-integration": "^100.4",
+    "php": "~7.4.0|~8.2.0",
+    "ext-curl": "*",
+    "ext-json": "*"
+  },
+  "config": {
+    "allow-plugins": {
+      "magento/composer-dependency-version-audit-plugin": true
     }
   }
 }

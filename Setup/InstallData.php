@@ -9,10 +9,7 @@ use Magento\Framework\Setup\InstallDataInterface;
 
 class InstallData implements InstallDataInterface
 {
-    /**
-     * @var ConfigBasedIntegrationManager
-     */
-    private $integrationManager;
+    private ConfigBasedIntegrationManager $integrationManager;
 
     /**
      * @param ConfigBasedIntegrationManager $integrationManager

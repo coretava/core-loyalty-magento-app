@@ -2,8 +2,8 @@
 
 namespace Coretava\Loyalty\Helper;
 
-use \Magento\Framework\App\Helper\AbstractHelper;
-use \Magento\Framework\App\Helper\Context;
+use Magento\Framework\App\Helper\AbstractHelper;
+use Magento\Framework\App\Helper\Context;
 
 class Api extends AbstractHelper
 {

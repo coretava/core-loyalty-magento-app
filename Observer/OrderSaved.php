@@ -15,7 +15,7 @@ class OrderSaved implements ObserverInterface
         $this->api = $api;
     }
 
-    public function execute(Observer $observer): static
+    public function execute(Observer $observer): OrderSaved
     {
         $order = $observer->getEvent()->getOrder();
 

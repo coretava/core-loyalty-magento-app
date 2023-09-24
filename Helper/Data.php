@@ -17,11 +17,9 @@ class Data extends AbstractHelper
         return $this->getConfigValue(self::APP_ID_FIELD);
     }
 
-    public function getConfigValue($field, $storeId = null)
+    public function getConfigValue($field)
     {
-        return $this->scopeConfig->getValue(
-            $field, ScopeInterface::SCOPE_STORE, $storeId
-        );
+        return $this->scopeConfig->getValue($field, ScopeInterface::SCOPE_STORE);
     }
 
     public function getAppKey()
@@ -31,19 +29,25 @@ class Data extends AbstractHelper
 
     public function getApiDomain(): string
     {
-        return match (self::ENVIRONMENT) {
-            'dev' => 'https://api.dev.coretava.com',
-            'staging' => 'https://api.staging.coretava.com',
-            default => 'https://api.coretava.com',
-        };
+        switch (self::ENVIRONMENT) {
+            case 'dev':
+                return 'https://api.dev.coretava.com';
+            case 'staging':
+                return 'https://api.staging.coretava.com';
+            default:
+                return 'https://api.coretava.com';
+        }
     }
 
     public function getStaticDomain(): string
     {
-        return match (self::ENVIRONMENT) {
-            'dev' => 'https://static-dev.gamiphy.co',
-            'staging' => 'https://static-staging.gamiphy.co',
-            default => 'https://static.gamiphy.co',
-        };
+        switch (self::ENVIRONMENT) {
+            case 'dev':
+                return 'https://static-dev.gamiphy.co';
+            case 'staging':
+                return 'https://static-staging.gamiphy.co';
+            default:
+                return 'https://static.gamiphy.co';
+        }
     }
 }
