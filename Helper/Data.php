@@ -7,7 +7,6 @@ use Magento\Store\Model\ScopeInterface;
 
 class Data extends AbstractHelper
 {
-    const ENVIRONMENT = 'prod';
     const XML_PATH_CORETAVA = 'loyalty/general/';
     const APP_ID_FIELD = self::XML_PATH_CORETAVA . "coretava_app_id";
     const APP_KEY_FIELD = self::XML_PATH_CORETAVA . "coretava_app_key";
@@ -27,9 +26,24 @@ class Data extends AbstractHelper
         return $this->getConfigValue(self::APP_KEY_FIELD);
     }
 
+    public function getEnvironment(): string
+    {
+        $storeName = $this->scopeConfig->getValue('general/store_information/name', ScopeInterface::SCOPE_STORE);
+
+        if (stripos($storeName, 'coretava_dev') !== false) {
+            return 'dev';
+        }
+
+        if (stripos($storeName, 'coretava_staging') !== false) {
+            return 'staging';
+        }
+
+        return 'prod';
+    }
+
     public function getApiDomain(): string
     {
-        switch (self::ENVIRONMENT) {
+        switch ($this->getEnvironment()) {
             case 'dev':
                 return 'https://api.dev.coretava.com';
             case 'staging':
@@ -41,7 +55,7 @@ class Data extends AbstractHelper
 
     public function getStaticDomain(): string
     {
-        switch (self::ENVIRONMENT) {
+        switch ($this->getEnvironment()) {
             case 'dev':
                 return 'https://static-dev.gamiphy.co';
             case 'staging':

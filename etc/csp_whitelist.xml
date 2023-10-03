@@ -6,10 +6,30 @@
                 <value id="coretava-static" type="host">*.gamiphy.co</value>
             </values>
         </policy>
+        <policy id="font-src">
+            <values>
+                <value id="coretava-static" type="host">*.gamiphy.co</value>
+            </values>
+        </policy>
+        <policy id="style-src">
+            <values>
+                <value id="coretava-static" type="host">*.gamiphy.co</value>
+            </values>
+        </policy>
+        <policy id="img-src">
+            <values>
+                <value id="coretava-static" type="host">*.gamiphy.co</value>
+            </values>
+        </policy>
         <policy id="connect-src">
             <values>
                 <value id="coretava-api" type="host">*.coretava.com</value>
+                <value id="coretava-gamiphy-api" type="host">*.gamiphy.co</value>
+                <value id="coretava-wss-api" type="host">wss://api.coretava.com</value>
+                <value id="coretava-wss-dev-api" type="host">wss://api.dev.coretava.com</value>
+                <value id="coretava-wss-staging-api" type="host">wss://api.staging.coretava.com</value>
                 <value id="coretava-sentry" type="host">*.sentry.io</value>
+                <value id="coretava-gtm-double-click-api" type="host">stats.g.doubleclick.net/o</value>
             </values>
         </policy>
     </policies>
