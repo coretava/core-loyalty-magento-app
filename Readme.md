@@ -32,8 +32,19 @@ bin/magento cache:clean
 ```
 
 ## Contribution
-New tag will be created on code merge, package will be published to [Packagist](https://packagist.org/packages/coretava/core-loyalty)
+
+New tag will be created on code merge, package will be published
+to [Packagist](https://packagist.org/packages/coretava/core-loyalty)
 
 ## Support
 
 For support, email support@coretava.com.
+
+## Local Development
+
+You can install the extension and connect to docker using the following commands
+
+```shell
+composer config repositories.coretava '{"type": "path", "url": "/coretava-loyalty", "options": {"symlink": false}}'
+composer require coretava/core-loyalty
+```
