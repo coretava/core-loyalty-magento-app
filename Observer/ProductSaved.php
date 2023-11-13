@@ -2,9 +2,9 @@
 
 namespace Coretava\Loyalty\Observer;
 
-use \Magento\Framework\Event\ObserverInterface;
-use \Magento\Framework\Event\Observer;
 use Coretava\Loyalty\Helper\Api;
+use Magento\Framework\Event\Observer;
+use Magento\Framework\Event\ObserverInterface;
 
 class ProductSaved implements ObserverInterface
 {
