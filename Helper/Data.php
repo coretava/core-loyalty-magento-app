@@ -7,28 +7,34 @@ use Magento\Store\Model\ScopeInterface;
 
 class Data extends AbstractHelper
 {
-    const XML_PATH_CORETAVA = 'loyalty/general/';
-    const APP_ID_FIELD = self::XML_PATH_CORETAVA . "coretava_app_id";
-    const APP_KEY_FIELD = self::XML_PATH_CORETAVA . "coretava_app_key";
+    const XML_PATH_CORETAVA = 'coretava_core_loyalty/general/';
+    const APP_ID_FIELD = self::XML_PATH_CORETAVA . "app_id";
+    const APP_KEY_FIELD = self::XML_PATH_CORETAVA . "app_key";
+    const CUSTOMER_DATA_GATHERING = self::XML_PATH_CORETAVA . "allow_customer_data_gathering";
 
-    public function getAppId()
-    {
-        return $this->getConfigValue(self::APP_ID_FIELD);
-    }
-
-    public function getConfigValue($field)
+    private function getConfigValue($field)
     {
         return $this->scopeConfig->getValue($field, ScopeInterface::SCOPE_STORE);
     }
 
-    public function getAppKey()
+    public function getAppId(): string
+    {
+        return $this->getConfigValue(self::APP_ID_FIELD);
+    }
+
+    public function getAppKey(): string
     {
         return $this->getConfigValue(self::APP_KEY_FIELD);
     }
 
+    public function isCustomerDataGatheringAllowed(): bool
+    {
+        return $this->getConfigValue(self::CUSTOMER_DATA_GATHERING) == 'yes';
+    }
+
     public function getEnvironment(): string
     {
-        $storeName = $this->scopeConfig->getValue('general/store_information/name', ScopeInterface::SCOPE_STORE);
+        $storeName = $this->getConfigValue('general/store_information/name');
 
         if (stripos($storeName, 'coretava_dev') !== false) {
             return 'dev';

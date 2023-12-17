@@ -25,12 +25,20 @@ class Script extends Template
         $customerId = $this->customerSession->getCustomerId();
         $customerData = $this->customerSession->getCustomer();
 
-        return array(
-            "externalId" => $customerId,
-            "email" => $customerData->getEmail(),
-            "firstName" => $customerData->getFirstname(),
-            "lastName" => $customerData->getLastname(),
-            "hash" => hash_hmac('sha256', $this->helper->getAppId() . '|' . $customerData->getEmail(), $this->helper->getAppKey())
-        );
+        if ($this->helper->isCustomerDataGatheringAllowed()) {
+            return array(
+                "externalId" => $customerId,
+                "email" => $customerData->getEmail(),
+                "firstName" => $customerData->getFirstname(),
+                "lastName" => $customerData->getLastname(),
+                "hash" => hash_hmac('sha256', $this->helper->getAppId() . '|' . $customerData->getEmail(), $this->helper->getAppKey())
+            );
+        } else {
+            return array(
+                "externalId" => $customerId,
+                "email" => $customerData->getEmail(),
+                "hash" => hash_hmac('sha256', $this->helper->getAppId() . '|' . $customerData->getEmail(), $this->helper->getAppKey())
+            );
+        }
     }
 }
