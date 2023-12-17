@@ -5,7 +5,7 @@ pipeline {
             spec:
                 containers:
                 - name: php
-                  image: php:8
+                  image: php:8.2.0
                   command:
                     - sleep
                   args:
