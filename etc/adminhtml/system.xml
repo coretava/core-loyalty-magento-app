@@ -5,7 +5,7 @@
         <tab id="coretava" translate="label" sortOrder="500">
             <label>Coretava</label>
         </tab>
-        <section id="loyalty" translate="label" sortOrder="130" showInDefault="1" showInWebsite="1" showInStore="1">
+        <section id="coretava_core_loyalty" translate="label" sortOrder="130" showInDefault="1" showInWebsite="1" showInStore="1">
             <class>separator-top</class>
             <label>Core Loyalty</label>
             <tab>coretava</tab>
@@ -13,15 +13,21 @@
             <group id="general" translate="label" type="text" sortOrder="0" showInDefault="1" showInWebsite="1"
                    showInStore="1">
                 <label>General Configuration</label>
-                <field id="coretava_app_id" translate="label" type="text" sortOrder="0" showInDefault="1"
+                <field id="app_id" translate="label" type="text" sortOrder="0" showInDefault="1"
                        showInWebsite="1" showInStore="1">
                     <label>App Id</label>
                     <comment>Coretava App Id</comment>
                 </field>
-                <field id="coretava_app_key" translate="label" type="text" sortOrder="1" showInDefault="1"
+                <field id="app_key" translate="label" type="text" sortOrder="1" showInDefault="1"
                        showInWebsite="1" showInStore="1">
                     <label>App Key</label>
                     <comment>Coretava App Key</comment>
+                </field>
+                <field id="allow_customer_data_gathering" translate="label" type="select" sortOrder="2" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label>Allow customer's data gathering</label>
+                    <comment>If enabled, it will collect customer's personal information like firstname/lastname</comment>
+                    <source_model>Coretava\Loyalty\Model\Config\Source\YesNoList</source_model>
                 </field>
             </group>
         </section>
