@@ -68,7 +68,7 @@ pipeline {
                 container('php') {
                     sh "composer config version ${NEW_COMPOSER_VERSION}"
                 }
-                withCredentials([gitUsernamePassword(credentialsId: "github-app-coretava-jenkins")]) {
+                withCredentials([gitUsernamePassword(credentialsId: "github-app-credentials")]) {
                     sh "git add ."
                     sh "git config --global user.email \"jenkins@coretava.com\""
                     sh "git config --global user.name \"Jenkins CICD\""
